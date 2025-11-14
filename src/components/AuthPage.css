@@ -1,0 +1,188 @@
+/* src/components/AuthPage.css */
+
+/* Centraliza tudo na tela */
+.auth-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+ 
+}
+
+/* O "card" principal que contém tudo */
+.auth-container {
+  background-color: #fff; /* O card é branco */
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden; /* Essencial para a animação */
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+
+/* Os dois painéis de formulário (Login e Cadastro) */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+  
+  /* Centraliza os componentes Login.js e Register.js */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+
+  background-color: #fff;
+}
+
+/* Corrigindo a cor do texto do MUI (que estava branco no fundo branco) */
+.form-container .MuiTypography-root,
+.form-container .MuiTextField-root label,
+.form-container .MuiInputBase-root {
+  color: #333 !important;
+}
+
+/* Painel de Login (Começa na esquerda) */
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+/* Painel de Cadastro (Começa na esquerda, escondido) */
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* O painel de "overlay" que desliza (o verde da referência) */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+/* O "recheio" do overlay, que tem a cor e o conteúdo */
+.overlay {
+  background: #ff416c; /* Um degradê de exemplo */
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Os dois lados do conteúdo do overlay */
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Painel da direita (Cadastro) */
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+/* Painel da esquerda (Login) */
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+/* Botão "fantasma" do overlay */
+.ghost-button {
+  border-radius: 20px;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+.ghost-button:active {
+  transform: scale(0.95);
+}
+
+.ghost-button:focus {
+  outline: none;
+}
+
+/* --- A MÁGICA DA ANIMAÇÃO --- */
+
+/* Quando a classe .right-panel-active é adicionada... */
+
+/* 1. O painel de Login desliza para a esquerda */
+.auth-container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+/* 2. O painel de Cadastro aparece */
+.auth-container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+/* 3. O "overlay" (verde) desliza para a esquerda */
+.auth-container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+/* 4. O recheio do overlay desliza para a direita */
+.auth-container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+/* 5. O painel de overlay da esquerda (Login) aparece */
+.auth-container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+/* 6. O painel de overlay da direita (Cadastro) desaparece */
+.auth-container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+/* Animação de 'show' (para o painel de cadastro não piscar) */
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}

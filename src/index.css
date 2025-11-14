@@ -1,13 +1,51 @@
+/* src/index.css */
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background: linear-gradient(-45deg, #1a1a2e, #3a1c4a, #1e3a5f, #4a1c3c);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite; /* Duração de 20s */
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+/* 3. A animação que mexe o gradiente */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.page-wrapper {
+  width: 100%;
+  position: absolute; /* Permite que as páginas se sobreponham durante a transição */
+  top: 0;
+  left: 0;
+}
+
+/* A PÁGINA A SAIR (Exit) */
+.page-slide-exit {
+  transform: translateX(0%);
+}
+.page-slide-exit-active {
+  transform: translateX(-100%); /* Desliza para a esquerda */
+  transition: transform 400ms ease-in-out;
+}
+
+/* A PÁGINA A ENTRAR (Enter) */
+.page-slide-enter {
+  transform: translateX(100%); /* Começa fora, à direita */
+}
+.page-slide-enter-active {
+  transform: translateX(0%); /* Desliza para o centro */
+  transition: transform 600ms ease-in-out;
 }
