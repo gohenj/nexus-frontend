@@ -1,5 +1,5 @@
 // src/App.js
-import backendURL from '../apiConfig.js';
+import backendURL from './apiConfig.js';
 import React, { useState, useEffect, useRef } from 'react'; // <-- MUDANÇA: Importa o useRef
 import axios from 'axios';
 import AuthPage from './components/AuthPage';
