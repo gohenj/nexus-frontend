@@ -22,7 +22,6 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const backendURL = 'http://localhost:3001';
         
     try {
       // MUDANÇA: URL de /register
