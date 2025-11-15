@@ -1,5 +1,5 @@
 // src/components/Register.js
-
+import backendURL from '../apiConfig.js';
 import React, { useState } from 'react';
 import axios from 'axios';
 

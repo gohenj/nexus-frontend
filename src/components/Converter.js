@@ -1,5 +1,5 @@
 // src/components/Converter.js (v3 - Corrigindo bugs de usabilidade)
-
+import backendURL from '../apiConfig.js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -31,7 +31,7 @@ function Converter({
   const [loadingConvert, setLoadingConvert] = useState(false);
   const [loadingFavorite, setLoadingFavorite] = useState(false);
 
-  const backendURL = 'http://localhost:3001';
+  
 
   useEffect(() => {
     // Este efeito define a moeda padrão QUANDO a lista carrega

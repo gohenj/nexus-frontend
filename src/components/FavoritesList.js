@@ -1,5 +1,5 @@
 // src/components/FavoritesList.js
-
+import backendURL from '../apiConfig.js';
 import React, { useState } from 'react'; // <-- 1. Importa o useState
 import axios from 'axios'; // <-- 2. Importa o axios
 
@@ -22,7 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete'; // <-- 5. Novo: Ícone da l
 // 6. Recebe as novas props: token e refreshFavorites
 function FavoritesList({ allCoins, userFavorites, token, refreshFavorites }) {
 
-  const backendURL = 'http://localhost:3001';
+  
 
   // 7. Estado para mostrar o loading *apenas* no item que está a ser removido
   const [loadingItemId, setLoadingItemId] = useState(null);

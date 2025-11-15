@@ -1,5 +1,5 @@
 // src/components/Login.js
-
+import backendURL from '../apiConfig.js';
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -23,7 +23,6 @@ function Login({ setToken }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const backendURL = 'http://localhost:3001';
     
     try {
       const response = await axios.post(

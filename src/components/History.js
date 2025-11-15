@@ -1,5 +1,5 @@
 // src/components/History.js
-
+import backendURL from '../apiConfig.js';
 import React from 'react';
 
 // --- NOVOS IMPORTS DO MUI ---

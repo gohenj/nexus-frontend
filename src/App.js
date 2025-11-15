@@ -1,5 +1,5 @@
 // src/App.js
-
+import backendURL from '../apiConfig.js';
 import React, { useState, useEffect, useRef } from 'react'; // <-- MUDANÇA: Importa o useRef
 import axios from 'axios';
 import AuthPage from './components/AuthPage';
@@ -49,7 +49,7 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const backendURL = 'http://localhost:3001';
+
 
   // --- Nossos Estados (sem mudanças) ---
   const [token, setToken] = useState(null);
