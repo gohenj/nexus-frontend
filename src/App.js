@@ -26,23 +26,34 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 // O nosso tema "High-Tech" (sem mudanças)
-const darkTheme = createTheme({
+const lightTheme = createTheme({
   palette: {
-    mode: 'dark',
-    primary: { main: '#E53935' },
+    mode: 'light', // <-- MUDANÇA PRINCIPAL
+
+    // Mantemos o vermelho/coral como cor primária
+    primary: {
+      main: '#E53935', 
+    },
+
+    // O fundo do app (CssBaseline) continua transparente
+    // para deixar a animação (do index.css) aparecer
     background: {
       default: 'transparent',
-      paper: 'rgba(26, 26, 46, 0.7)',
+      // O 'paper' (card) agora será o branco padrão do 'light'
     },
   },
-  typography: { fontFamily: 'Poppins, sans-serif' },
+
+  // Mantemos a fonte padrão
+  typography: {
+    fontFamily: 'Poppins, sans-serif',
+  },
+
+  // REMOVEMOS o 'backdropFilter' (vidro fosco)
   components: {
     MuiPaper: {
       styleOverrides: {
-        root: {
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-        }
+        // Os cards agora terão a sombra padrão do MUI (elevation)
+        // em vez do vidro fosco
       }
     }
   }
@@ -143,7 +154,7 @@ function App() {
 
   // --- Renderização ---
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       
       <SwitchTransition mode="out-in">
@@ -168,13 +179,13 @@ function App() {
               <>
                 <AppBar position="static" color="transparent" elevation={0} sx={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
                   <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
-                      Nexus Cripto
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold', color: 'white' }}> {/* <-- ADICIONADO A COR */}
+                     Nexus Cripto
                     </Typography>
-                    <Button color="inherit" onClick={handleLogout} variant="outlined">
+                     <Button color="inherit" onClick={handleLogout} variant="outlined" sx={{ color: 'white', borderColor: 'rgba(255, 255, 255, 0.5)' }}> {/* <-- ADICIONADO A COR */}
                       Sair
-                    </Button>
-                  </Toolbar>
+                      </Button>
+                    </Toolbar>
                 </AppBar>
 
                 <Container component="main" maxWidth="md" sx={{ marginTop: '2rem' }}>

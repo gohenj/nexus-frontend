@@ -10,7 +10,7 @@
 
 /* O "card" principal que contém tudo */
 .auth-container {
-  background-color: #fff; /* O card é branco */
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
@@ -172,6 +172,84 @@
 /* 6. O painel de overlay da direita (Cadastro) desaparece */
 .auth-container.right-panel-active .overlay-right {
   transform: translateX(20%);
+}
+
+/* --- MEDIA QUERY PARA MOBILE --- */
+@media (max-width: 768px) {
+  /* Quebra a animação de deslize e transforma num layout simples */
+
+  .auth-container {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  .sign-up-container {
+    /* Move o painel de cadastro para cima */
+    transform: translateY(100%);
+  }
+
+  /* Quando ativo, desliza o cadastro para o sítio */
+  .auth-container.right-panel-active .sign-up-container {
+    transform: translateY(0);
+  }
+
+  .sign-in-container {
+    /* Move o painel de login para baixo */
+    transform: translateY(0);
+  }
+
+  /* Quando ativo, desliza o login para fora */
+  .auth-container.right-panel-active .sign-in-container {
+    transform: translateY(100%);
+  }
+
+  /* O overlay agora fica em cima */
+  .overlay-container {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: translateY(0);
+  }
+
+  .auth-container.right-panel-active .overlay-container {
+    transform: translateY(-100%); /* Desliza para cima */
+  }
+
+  .overlay {
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(0);
+  }
+
+  .auth-container.right-panel-active .overlay {
+    transform: translateY(0);
+  }
+
+  .overlay-panel {
+    width: 100%;
+  }
+
+  .overlay-right {
+    transform: translateY(0);
+  }
+  .overlay-left {
+    transform: translateY(0);
+  }
+
+  .auth-container.right-panel-active .overlay-right {
+    transform: translateY(100%);
+  }
+  .auth-container.right-panel-active .overlay-left {
+    transform: translateY(-100%);
+  }
 }
 
 /* Animação de 'show' (para o painel de cadastro não piscar) */
