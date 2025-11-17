@@ -1,5 +1,5 @@
 // src/components/AuthPage.js
-
+import backendURL from '../apiConfig.js';
 import React, { useState } from 'react';
 import Login from './Login';
 import Register from './Register';
