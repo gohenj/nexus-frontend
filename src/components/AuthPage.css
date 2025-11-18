@@ -175,80 +175,83 @@
 }
 
 /* --- MEDIA QUERY PARA MOBILE --- */
+/* --- MEDIA QUERY PARA MOBILE (NOVO E SIMPLIFICADO) --- */
 @media (max-width: 768px) {
-  /* Quebra a animação de deslize e transforma num layout simples */
-
   .auth-container {
+    flex-direction: column; /* Empilha os elementos */
     width: 100%;
     min-height: 100vh;
-    height: 100%;
-    border-radius: 0;
+    height: auto;
+    border-radius: 0; /* Remove as bordas arredondadas */
   }
 
   .form-container {
     width: 100%;
+    height: auto;
+    padding: 20px; /* Adiciona algum padding */
+    z-index: 2; /* Garante que fique por cima */
   }
 
+  .sign-in-container,
   .sign-up-container {
-    /* Move o painel de cadastro para cima */
-    transform: translateY(100%);
-  }
-
-  /* Quando ativo, desliza o cadastro para o sítio */
-  .auth-container.right-panel-active .sign-up-container {
-    transform: translateY(0);
-  }
-
-  .sign-in-container {
-    /* Move o painel de login para baixo */
-    transform: translateY(0);
-  }
-
-  /* Quando ativo, desliza o login para fora */
-  .auth-container.right-panel-active .sign-in-container {
-    transform: translateY(100%);
-  }
-
-  /* O overlay agora fica em cima */
-  .overlay-container {
-    width: 100%;
-    height: 100%;
-    left: 0;
+    position: relative; /* Não precisam mais de absoluto */
     top: 0;
-    transform: translateY(0);
+    left: 0;
+    height: auto; /* Altura automática */
+    transform: none !important; /* Remove todas as transformações de animação */
   }
 
-  .auth-container.right-panel-active .overlay-container {
-    transform: translateY(-100%); /* Desliza para cima */
+  .overlay-container {
+    position: relative; /* Não precisa mais de absoluto */
+    width: 100%;
+    height: 200px; /* Altura fixa para o cabeçalho/overlay */
+    transform: none !important; /* Remove transformações */
+    z-index: 1; /* Fica por baixo do form */
   }
 
   .overlay {
-    left: 0;
-    width: 100%;
+    background-position: center;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100%;
-    transform: translateY(0);
-  }
-
-  .auth-container.right-panel-active .overlay {
-    transform: translateY(0);
   }
 
   .overlay-panel {
     width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    display: flex; /* Para alinhar o texto e os botões */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .overlay-right {
-    transform: translateY(0);
-  }
-  .overlay-left {
-    transform: translateY(0);
+  .overlay-panel h1, .overlay-panel p {
+    margin: 5px 0; /* Ajusta as margens do texto */
   }
 
-  .auth-container.right-panel-active .overlay-right {
-    transform: translateY(100%);
+  .overlay-panel button {
+    margin-top: 10px; /* Adiciona espaço acima dos botões */
   }
-  .auth-container.right-panel-active .overlay-left {
-    transform: translateY(-100%);
+
+  /* Quando ativo, só mostra o painel de cadastro */
+  .auth-container.right-panel-active .sign-in-container {
+    display: none;
+  }
+  .auth-container.right-panel-active .sign-up-container {
+    display: block;
+  }
+  .auth-container:not(.right-panel-active) .sign-up-container {
+    display: none;
+  }
+  .auth-container:not(.right-panel-active) .sign-in-container {
+    display: block;
+  }
+
+  .auth-container.right-panel-active .overlay-container {
+    display: none; /* Esconde o overlay quando o cadastro está ativo */
   }
 }
 
