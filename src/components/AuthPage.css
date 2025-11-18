@@ -225,12 +225,14 @@
   
   /* --- A NOVA ANIMAÇÃO VERTICAL --- */
   
-  /* Por padrão (LOGIN): */
-  .sign-in-container { transform: translateY(0); }
-  .sign-up-container { transform: translateY(100%); } /* Cadastro fica escondido em baixo */
+  /* --- A NOVA ANIMAÇÃO VERTICAL (CORRIGIDA) --- */
   
-  .overlay-left { transform: translateY(0); }
-  .overlay-right { transform: translateY(-100%); } /* Overlay do cadastro fica escondido em cima */
+  /* Por padrão (LOGIN): */
+  .sign-in-container { transform: translateY(0); } /* Formulário de Login VISÍVEL */
+  .sign-up-container { transform: translateY(100%); } /* Formulário de Cadastro escondido em baixo */
+  
+  .overlay-left { transform: translateY(-100%); } /* Overlay de Login ESCONDIDO em cima */
+  .overlay-right { transform: translateY(0); } /* Overlay de Cadastro VISÍVEL */
 
   
   /* --- QUANDO ATIVO (CADASTRO): --- */
@@ -257,11 +259,11 @@
 
   /* O texto do overlay desliza */
   .auth-container.right-panel-active .overlay-left {
-    transform: translateY(-100%);
+    transform: translateY(0); /* Overlay de Login VISÍVEL */
   }
   
   .auth-container.right-panel-active .overlay-right {
-    transform: translateY(0);
+    transform: translateY(-100%); /* Overlay de Cadastro ESCONDIDO em cima */
   }
 
   /* Remove a animação 'show' de fade, não é precisa aqui */
