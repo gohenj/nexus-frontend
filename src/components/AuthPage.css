@@ -1,6 +1,8 @@
-/* src/components/AuthPage.css */
+/* src/components/AuthPage.css (FINAL - Desktop e Mobile) */
 
-/* Centraliza tudo na tela */
+/* --- LAYOUT DESKTOP (POR DEFEITO) --- */
+/* (Este é o código que já tinhas e que funciona) */
+
 .auth-page-wrapper {
   display: flex;
   justify-content: center;
@@ -8,49 +10,41 @@
   min-height: 100vh;
 }
 
-/* O "card" principal que contém tudo */
 .auth-container {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
-  overflow: hidden; /* Essencial para a animação */
+  overflow: hidden;
   width: 768px;
   max-width: 100%;
   min-height: 480px;
 }
 
-/* Os dois painéis de formulário (Login e Cadastro) */
 .form-container {
   position: absolute;
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
-  
-  /* Centraliza os componentes Login.js e Register.js */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 2rem;
-
   background-color: #fff;
 }
 
-/* Corrigindo a cor do texto do MUI (que estava branco no fundo branco) */
 .form-container .MuiTypography-root,
 .form-container .MuiTextField-root label,
 .form-container .MuiInputBase-root {
   color: #333 !important;
 }
 
-/* Painel de Login (Começa na esquerda) */
 .sign-in-container {
   left: 0;
   width: 50%;
   z-index: 2;
 }
 
-/* Painel de Cadastro (Começa na esquerda, escondido) */
 .sign-up-container {
   left: 0;
   width: 50%;
@@ -58,7 +52,6 @@
   z-index: 1;
 }
 
-/* O painel de "overlay" que desliza (o verde da referência) */
 .overlay-container {
   position: absolute;
   top: 0;
@@ -70,9 +63,8 @@
   z-index: 100;
 }
 
-/* O "recheio" do overlay, que tem a cor e o conteúdo */
 .overlay {
-  background: #ff416c; /* Um degradê de exemplo */
+  background: #ff416c;
   background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
   background: linear-gradient(to right, #ff4b2b, #ff416c);
   background-repeat: no-repeat;
@@ -87,7 +79,6 @@
   transition: transform 0.6s ease-in-out;
 }
 
-/* Os dois lados do conteúdo do overlay */
 .overlay-panel {
   position: absolute;
   display: flex;
@@ -103,18 +94,15 @@
   transition: transform 0.6s ease-in-out;
 }
 
-/* Painel da direita (Cadastro) */
 .overlay-right {
   right: 0;
   transform: translateX(0);
 }
 
-/* Painel da esquerda (Login) */
 .overlay-left {
   transform: translateX(-20%);
 }
 
-/* Botão "fantasma" do overlay */
 .ghost-button {
   border-radius: 20px;
   border: 1px solid #ffffff;
@@ -137,16 +125,10 @@
   outline: none;
 }
 
-/* --- A MÁGICA DA ANIMAÇÃO --- */
-
-/* Quando a classe .right-panel-active é adicionada... */
-
-/* 1. O painel de Login desliza para a esquerda */
 .auth-container.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
 
-/* 2. O painel de Cadastro aparece */
 .auth-container.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
@@ -154,28 +136,22 @@
   animation: show 0.6s;
 }
 
-/* 3. O "overlay" (verde) desliza para a esquerda */
 .auth-container.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 
-/* 4. O recheio do overlay desliza para a direita */
 .auth-container.right-panel-active .overlay {
   transform: translateX(50%);
 }
 
-/* 5. O painel de overlay da esquerda (Login) aparece */
 .auth-container.right-panel-active .overlay-left {
   transform: translateX(0);
 }
 
-/* 6. O painel de overlay da direita (Cadastro) desaparece */
 .auth-container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
 
-
-/* Animação de 'show' (para o painel de cadastro não piscar) */
 @keyframes show {
   0%, 49.99% {
     opacity: 0;
@@ -184,5 +160,114 @@
   50%, 100% {
     opacity: 1;
     z-index: 5;
+  }
+}
+
+/* --- MEDIA QUERY PARA MOBILE (V4 - ANIMAÇÃO VERTICAL) --- */
+
+@media (max-width: 768px) {
+  
+  .auth-container {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* 1. O OVERLAY (Colorido) - Fica em CIMA */
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%; /* Ocupa 40% do topo */
+    z-index: 5;
+    transform: translateX(0); /* Reseta o desktop */
+  }
+  
+  .overlay {
+    left: 0;
+    width: 100%;
+    transform: translateX(0);
+  }
+
+  .overlay-panel {
+    width: 100%;
+    height: 100%;
+    transform: translateY(0); /* Usa translateY agora */
+    padding: 0 1rem; 
+  }
+
+  /* 2. OS FORMULÁRIOS (Brancos) - Ficam EM BAIXO */
+  .form-container {
+    position: absolute;
+    top: 40%; /* Começa abaixo do overlay */
+    left: 0;
+    width: 100%;
+    height: 60%; /* Ocupa os 60% de baixo */
+    z-index: 2;
+    transform: translateX(0); /* Reseta o desktop */
+  }
+  
+  .sign-in-container {
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  
+  .sign-up-container {
+    left: 0;
+    width: 100%;
+    opacity: 1; /* Precisa estar opaco para animar */
+    z-index: 1;
+  }
+  
+  /* --- A NOVA ANIMAÇÃO VERTICAL --- */
+  
+  /* Por padrão (LOGIN): */
+  .sign-in-container { transform: translateY(0); }
+  .sign-up-container { transform: translateY(100%); } /* Cadastro fica escondido em baixo */
+  
+  .overlay-left { transform: translateY(0); }
+  .overlay-right { transform: translateY(-100%); } /* Overlay do cadastro fica escondido em cima */
+
+  
+  /* --- QUANDO ATIVO (CADASTRO): --- */
+  
+  /* O painel de LOGIN (sign-in) desliza para baixo */
+  .auth-container.right-panel-active .sign-in-container {
+    transform: translateY(100%);
+  }
+  
+  /* O painel de CADASTRO (sign-up) desliza para o sítio */
+  .auth-container.right-panel-active .sign-up-container {
+    transform: translateY(0);
+    z-index: 5;
+  }
+  
+  /* O overlay (painel colorido) não se mexe */
+  .auth-container.right-panel-active .overlay-container {
+    transform: translateY(0);
+  }
+  
+  .auth-container.right-panel-active .overlay {
+    transform: translateX(0);
+  }
+
+  /* O texto do overlay desliza */
+  .auth-container.right-panel-active .overlay-left {
+    transform: translateY(-100%);
+  }
+  
+  .auth-container.right-panel-active .overlay-right {
+    transform: translateY(0);
+  }
+
+  /* Remove a animação 'show' de fade, não é precisa aqui */
+  @keyframes show {
+    0%, 100% {
+      opacity: 1;
+    }
   }
 }
