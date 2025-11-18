@@ -178,99 +178,67 @@
 /* --- MEDIA QUERY PARA MOBILE (NOVO E SIMPLIFICADO) --- */
 /* --- MEDIA QUERY PARA MOBILE (V2 - CORRIGIDO) --- */
 
+/* --- MEDIA QUERY PARA MOBILE (V3 - SIMPLES E SEGURO) --- */
+
 @media (max-width: 768px) {
-  
-  .auth-container {
-    width: 100%;
+
+  /* 1. O wrapper de fundo continua a ocupar a tela toda */
+  .auth-page-wrapper {
     min-height: 100vh;
-    height: 100%;
+    height: auto;
+    padding-top: 2rem; /* Adiciona espaço no topo */
+    padding-bottom: 2rem; /* Adiciona espaço em baixo */
+  }
+
+  /* 2. O .auth-container (o card branco) agora é só um wrapper vertical */
+  .auth-container {
+    display: flex;
+    flex-direction: column; /* Empilha os filhos */
+    width: 100%;
+    min-height: auto; /* Altura automática */
+    height: auto;
     border-radius: 0;
     box-shadow: none;
-    overflow: hidden; /* Garante que nada vaza */
+    background: none; /* Fica transparente, só o fundo da página (gradiente) aparece */
+    overflow: visible; /* Remove o overflow: hidden */
   }
 
-  /* O overlay agora fica EM CIMA, como um cabeçalho */
+  /* 3. O overlay (o painel colorido) é TOTALMENTE ESCONDIDO em mobile */
   .overlay-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 35%; /* Ocupa 35% da altura da tela */
-    z-index: 5;
-    transform: translateX(0); /* Remove animação de desktop */
+    display: none !important;
   }
-  
-  /* Os painéis de formulário agora ficam EM BAIXO */
+
+  /* 4. Os painéis de formulário (Login e Cadastro) */
   .form-container {
-    position: absolute;
-    top: 35%; /* Começa logo abaixo do overlay */
-    left: 0;
-    width: 100%;
-    height: 65%; /* Ocupa os 65% restantes */
-    transform: translateX(0); /* Remove animação de desktop */
+    position: relative; /* Remove o 'absolute' */
+    top: auto;
+    left: auto;
+    width: 90%; /* Ocupa 90% da largura */
+    height: auto;
+    opacity: 1; /* Garante que está visível */
+    transform: none; /* Remove qualquer animação */
+    margin: 20px auto; /* Centra e dá espaço entre os cards */
+
+    /* Define o card branco que queríamos */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 2rem; /* Espaçamento interno */
   }
 
-  /* O overlay-panel (texto e botão) */
-  .overlay {
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateX(0);
+  /* 5. Garante que o texto dentro deles volta a ser escuro */
+  .form-container .MuiTypography-root,
+  .form-container .MuiTextField-root label,
+  .form-container .MuiInputBase-root {
+    color: #333 !important;
   }
 
-  .overlay-panel {
-    width: 100%;
-    height: 100%;
-    transform: translateX(0);
-  }
-
-  /* --- A NOVA ANIMAÇÃO (Deslizar para cima/baixo) --- */
-
-  /* Por padrão, o painel de LOGIN (sign-in) está visível */
-  .sign-in-container {
-    transform: translateY(0);
-    opacity: 1;
-    z-index: 2;
-  }
-  /* E o painel de CADASTRO (sign-up) está escondido em baixo */
+  /* Garante que ambos os formulários são sempre visíveis */
+  .sign-in-container,
   .sign-up-container {
-    transform: translateY(100%);
-    opacity: 0;
-    z-index: 1;
-  }
-
-  /* O overlay da ESQUERDA (do Login) está visível */
-  .overlay-left {
-    transform: translateY(0);
-  }
-  /* O overlay da DIREITA (do Cadastro) está escondido em cima */
-  .overlay-right {
-    transform: translateY(-100%);
-  }
-
-  
-  /* --- QUANDO O PAINEL DE CADASTRO ESTÁ ATIVO --- */
-  
-  /* O painel de LOGIN (sign-in) desliza para baixo */
-  .auth-container.right-panel-active .sign-in-container {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  
-  /* O painel de CADASTRO (sign-up) desliza para o sítio */
-  .auth-container.right-panel-active .sign-up-container {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-  /* O overlay da ESQUERDA (do Login) desliza para cima */
-  .auth-container.right-panel-active .overlay-left {
-    transform: translateY(-100%);
-  }
-  
-  /* O overlay da DIREITA (do Cadastro) desliza para o sítio */
-  .auth-container.right-panel-active .overlay-right {
-    transform: translateY(0);
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
