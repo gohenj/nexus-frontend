@@ -184,8 +184,6 @@
 
   /* 1. O wrapper de fundo continua a ocupar a tela toda */
   .auth-page-wrapper {
-    min-height: 100vh;
-    height: auto;
     padding-top: 2rem; /* Adiciona espaço no topo */
     padding-bottom: 2rem; /* Adiciona espaço em baixo */
   }
