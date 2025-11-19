@@ -1,9 +1,7 @@
-// src/components/FavoritesList.js
-import backendURL from '../apiConfig.js';
-import React, { useState } from 'react'; // <-- 1. Importa o useState
-import axios from 'axios'; // <-- 2. Importa o axios
 
-// --- Imports do MUI (adicionamos IconButton e CircularProgress) ---
+import backendURL from '../apiConfig.js';
+import React, { useState } from 'react'; 
+import axios from 'axios'; 
 import {
   Box,
   Typography,
@@ -11,44 +9,32 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  IconButton, // <-- 3. Novo: O botão de ícone
-  CircularProgress // <-- 4. Novo: O loading
+  IconButton, 
+  CircularProgress 
 } from '@mui/material';
 
-// --- Imports de Ícones (adicionamos DeleteIcon) ---
 import StarIcon from '@mui/icons-material/Star';
-import DeleteIcon from '@mui/icons-material/Delete'; // <-- 5. Novo: Ícone da lixeira
+import DeleteIcon from '@mui/icons-material/Delete'; 
 
-// 6. Recebe as novas props: token e refreshFavorites
 function FavoritesList({ allCoins, userFavorites, token, refreshFavorites }) {
 
-  
-
-  // 7. Estado para mostrar o loading *apenas* no item que está a ser removido
   const [loadingItemId, setLoadingItemId] = useState(null);
-
-  // Filtra as moedas (sem mudanças)
   const favoriteCoinObjects = allCoins.filter(coin => 
     userFavorites.includes(coin.id)
   );
-
-  // 8. Nova função para desfavoritar
   const handleUnfavorite = async (cryptoId) => {
-    setLoadingItemId(cryptoId); // Ativa o loading para este item
+    setLoadingItemId(cryptoId); 
     try {
       const config = { headers: { 'x-auth-token': token } };
-      // Chama a rota DELETE do backend (que já tínhamos feito)
       await axios.delete(
         `${backendURL}/api/favorites/${cryptoId}`, 
         config
       );
-      // Avisa o App.js para recarregar as listas (atualizando tudo!)
       refreshFavorites(); 
     } catch (error) {
       console.error('Erro ao desfavoritar', error);
       alert('Erro ao remover favorito.');
     } finally {
-      // setLoadingItemId(null); // O 'refresh' já vai fazer isto, mas podemos garantir
     }
   };
 
@@ -68,15 +54,13 @@ function FavoritesList({ allCoins, userFavorites, token, refreshFavorites }) {
             <ListItem 
               key={coin.id} 
               divider
-              // 9. Adiciona o botão de "ação secundária" (a lixeira)
               secondaryAction={
                 <IconButton 
                   edge="end" 
                   aria-label="delete"
                   onClick={() => handleUnfavorite(coin.id)}
-                  disabled={loadingItemId === coin.id} // Desativa o botão durante o clique
+                  disabled={loadingItemId === coin.id} 
                 >
-                  {/* Mostra o loading ou o ícone */}
                   {loadingItemId === coin.id ? (
                     <CircularProgress size={24} color="inherit" />
                   ) : (

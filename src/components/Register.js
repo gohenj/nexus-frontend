@@ -1,11 +1,8 @@
-// src/components/Register.js
+
 import backendURL from '../apiConfig.js';
 import React, { useState } from 'react';
 import axios from 'axios';
-
-// --- NOVOS IMPORTS DO MUI ---
 import { TextField, Button, Box, Typography } from '@mui/material';
-// --- FIM DOS NOVOS IMPORTS ---
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -24,7 +21,6 @@ function Register() {
     e.preventDefault();
         
     try {
-      // MUDANÇA: URL de /register
       await axios.post(
         `${backendURL}/api/auth/register`, 
         {
@@ -48,8 +44,6 @@ function Register() {
       }
     }
   };
-
-  // --- NOVO JSX COM MUI ---
   return (
     <Box 
       component="form"
@@ -86,7 +80,6 @@ function Register() {
         fullWidth
       />
       
-      {/* MUDANÇA: Texto do botão */}
       <Button 
         type="submit" 
         variant="contained"

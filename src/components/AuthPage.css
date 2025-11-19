@@ -1,7 +1,3 @@
-/* src/components/AuthPage.css (FINAL - Desktop e Mobile) */
-
-/* --- LAYOUT DESKTOP (POR DEFEITO) --- */
-/* (Este é o código que já tinhas e que funciona) */
 
 .auth-page-wrapper {
   display: flex;
@@ -163,8 +159,6 @@
   }
 }
 
-/* --- MEDIA QUERY PARA MOBILE (V4 - ANIMAÇÃO VERTICAL) --- */
-
 @media (max-width: 768px) {
   
   .auth-container {
@@ -175,15 +169,14 @@
     box-shadow: none;
   }
 
-  /* 1. O OVERLAY (Colorido) - Fica em CIMA */
   .overlay-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 40%; /* Ocupa 40% do topo */
+    height: 40%; 
     z-index: 5;
-    transform: translateX(0); /* Reseta o desktop */
+    transform: translateX(0);
   }
   
   .overlay {
@@ -195,19 +188,18 @@
   .overlay-panel {
     width: 100%;
     height: 100%;
-    transform: translateY(0); /* Usa translateY agora */
+    transform: translateY(0); 
     padding: 0 1rem; 
   }
 
-  /* 2. OS FORMULÁRIOS (Brancos) - Ficam EM BAIXO */
   .form-container {
     position: absolute;
-    top: 40%; /* Começa abaixo do overlay */
+    top: 40%; 
     left: 0;
     width: 100%;
-    height: 60%; /* Ocupa os 60% de baixo */
+    height: 60%; 
     z-index: 2;
-    transform: translateX(0); /* Reseta o desktop */
+    transform: translateX(0);
   }
   
   .sign-in-container {
@@ -219,36 +211,25 @@
   .sign-up-container {
     left: 0;
     width: 100%;
-    opacity: 1; /* Precisa estar opaco para animar */
+    opacity: 1; 
     z-index: 1;
   }
   
-  /* --- A NOVA ANIMAÇÃO VERTICAL --- */
+  .sign-in-container { transform: translateY(0); } 
+  .sign-up-container { transform: translateY(100%); } 
   
-  /* --- A NOVA ANIMAÇÃO VERTICAL (CORRIGIDA) --- */
-  
-  /* Por padrão (LOGIN): */
-  .sign-in-container { transform: translateY(0); } /* Formulário de Login VISÍVEL */
-  .sign-up-container { transform: translateY(100%); } /* Formulário de Cadastro escondido em baixo */
-  
-  .overlay-left { transform: translateY(-100%); } /* Overlay de Login ESCONDIDO em cima */
-  .overlay-right { transform: translateY(0); } /* Overlay de Cadastro VISÍVEL */
+  .overlay-left { transform: translateY(-100%); }
+  .overlay-right { transform: translateY(0); } 
 
-  
-  /* --- QUANDO ATIVO (CADASTRO): --- */
-  
-  /* O painel de LOGIN (sign-in) desliza para baixo */
   .auth-container.right-panel-active .sign-in-container {
     transform: translateY(100%);
   }
-  
-  /* O painel de CADASTRO (sign-up) desliza para o sítio */
+
   .auth-container.right-panel-active .sign-up-container {
     transform: translateY(0);
     z-index: 5;
   }
   
-  /* O overlay (painel colorido) não se mexe */
   .auth-container.right-panel-active .overlay-container {
     transform: translateY(0);
   }
@@ -257,16 +238,15 @@
     transform: translateX(0);
   }
 
-  /* O texto do overlay desliza */
+
   .auth-container.right-panel-active .overlay-left {
-    transform: translateY(0); /* Overlay de Login VISÍVEL */
+    transform: translateY(0); 
   }
   
   .auth-container.right-panel-active .overlay-right {
-    transform: translateY(-100%); /* Overlay de Cadastro ESCONDIDO em cima */
+    transform: translateY(-100%);
   }
-
-  /* Remove a animação 'show' de fade, não é precisa aqui */
+  
   @keyframes show {
     0%, 100% {
       opacity: 1;

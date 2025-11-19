@@ -1,4 +1,4 @@
-// src/components/Converter.js (v3 - Corrigindo bugs de usabilidade)
+
 import backendURL from '../apiConfig.js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -23,10 +23,7 @@ function Converter({
   loadingCoins
 }) {
   const [selectedCoin, setSelectedCoin] = useState(null);
-  
-  // MUDANÇA 1: "Quantidade" agora começa vazia, o que é mais natural.
   const [amount, setAmount] = useState(''); 
-  
   const [result, setResult] = useState(null);
   const [loadingConvert, setLoadingConvert] = useState(false);
   const [loadingFavorite, setLoadingFavorite] = useState(false);
@@ -34,7 +31,6 @@ function Converter({
   
 
   useEffect(() => {
-    // Este efeito define a moeda padrão QUANDO a lista carrega
     if (!selectedCoin && allCoins.length > 0) {
       let defaultCoinId = allCoins[0].id;
       if (userFavorites.length > 0) {
@@ -43,16 +39,14 @@ function Converter({
       const defaultCoinObject = allCoins.find(coin => coin.id === defaultCoinId);
       setSelectedCoin(defaultCoinObject);
     }
-  }, [allCoins, userFavorites]); // MUDANÇA 2: Removido 'selectedCoin' daqui. Isso PAROU o bug do auto-completar.
-
+  }, [allCoins, userFavorites]); 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedCoin) {
       alert('Por favor, selecione uma moeda.');
       return;
     }
-    
-    // MUDANÇA 3: Melhor validação da quantidade
+  
     const numAmount = Number(amount);
     if (!numAmount || numAmount <= 0) {
       alert('Por favor, insira uma quantidade válida maior que zero.');
@@ -65,7 +59,7 @@ function Converter({
       const config = { headers: { 'x-auth-token': token } };
       const response = await axios.post(
         `${backendURL}/api/convert`,
-        { cryptoId: selectedCoin.id, amount: numAmount }, // Usa a quantidade validada
+        { cryptoId: selectedCoin.id, amount: numAmount }, 
         config
       );
       setResult(response.data);
@@ -79,7 +73,6 @@ function Converter({
   };
 
   const handleFavoriteToggle = async () => {
-    // ... (Esta função está correta, sem mudanças) ...
     if (loadingFavorite || !selectedCoin) return; 
     setLoadingFavorite(true);
     const config = { headers: { 'x-auth-token': token } };
@@ -158,10 +151,10 @@ function Converter({
           label="Quantidade"
           type="number"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)} // Permite digitar livremente
+          onChange={(e) => setAmount(e.target.value)} 
           variant="outlined"
           fullWidth
-          inputProps={{ min: "0", step: "any" }} // 'step="any"' remove as setas chatas
+          inputProps={{ min: "0", step: "any" }} 
         />
         
         <Button
@@ -175,7 +168,6 @@ function Converter({
         </Button>
       </Box>
       
-      {/* ... (O JSX do Resultado continua igual) ... */}
       {result && (
         <Paper 
           variant="outlined" 

@@ -1,13 +1,13 @@
-// src/App.js
+
 import backendURL from './apiConfig.js';
-import React, { useState, useEffect, useRef } from 'react'; // <-- MUDANÇA: Importa o useRef
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import AuthPage from './components/AuthPage';
 import Converter from './components/Converter';
 import History from './components/History';
 import FavoritesList from './components/FavoritesList';
 
-// --- IMPORTS DO MUI ---
+
 import {
   Container,
   AppBar,
@@ -22,38 +22,27 @@ import {
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-// --- IMPORT DA TRANSIÇÃO ---
+
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
-// O nosso tema "High-Tech" (sem mudanças)
 const lightTheme = createTheme({
   palette: {
-    mode: 'light', // <-- MUDANÇA PRINCIPAL
-
-    // Mantemos o vermelho/coral como cor primária
+    mode: 'light', 
     primary: {
       main: '#E53935', 
     },
-
-    // O fundo do app (CssBaseline) continua transparente
-    // para deixar a animação (do index.css) aparecer
     background: {
       default: 'transparent',
-      // O 'paper' (card) agora será o branco padrão do 'light'
     },
   },
 
-  // Mantemos a fonte padrão
   typography: {
     fontFamily: 'Poppins, sans-serif',
   },
 
-  // REMOVEMOS o 'backdropFilter' (vidro fosco)
   components: {
     MuiPaper: {
       styleOverrides: {
-        // Os cards agora terão a sombra padrão do MUI (elevation)
-        // em vez do vidro fosco
       }
     }
   }
@@ -61,8 +50,6 @@ const lightTheme = createTheme({
 
 function App() {
 
-
-  // --- Nossos Estados (sem mudanças) ---
   const [token, setToken] = useState(null);
   const [history, setHistory] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
@@ -72,8 +59,7 @@ function App() {
   const [sortedCoins, setSortedCoins] = useState([]);
   const [currentTab, setCurrentTab] = useState(0);
 
-  // --- NOSSAS FUNÇÕES (sem mudanças) ---
-  const fetchHistory = async (currentToken) => { /* ...código igual... */ 
+  const fetchHistory = async (currentToken) => { 
     if (!currentToken) return;
     setLoadingHistory(true);
     try {
@@ -86,7 +72,7 @@ function App() {
       setLoadingHistory(false);
     }
   };
-  const fetchAllCoins = async (currentToken) => { /* ...código igual... */ 
+  const fetchAllCoins = async (currentToken) => { 
     if (!currentToken) return;
     setLoadingCoins(true);
     try {
@@ -98,7 +84,7 @@ function App() {
       setLoadingCoins(false);
     }
   };
-  const fetchUserFavorites = async (currentToken) => { /* ...código igual... */ 
+  const fetchUserFavorites = async (currentToken) => { 
     if (!currentToken) return;
     try {
       const config = { headers: { 'x-auth-token': currentToken } };
@@ -108,20 +94,20 @@ function App() {
       console.error('Erro ao buscar favoritos', error);
     }
   };
-  useEffect(() => { /* ...código igual... */
+  useEffect(() => { 
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
     }
   }, []);
-  useEffect(() => { /* ...código igual... */
+  useEffect(() => { 
     if (token) {
       fetchHistory(token);
       fetchAllCoins(token);
       fetchUserFavorites(token);
     }
   }, [token]);
-  useEffect(() => { /* ...código igual... */
+  useEffect(() => {
     if (allCoins.length === 0) return;
     const favorites = [];
     const others = [];
@@ -134,55 +120,43 @@ function App() {
     });
     setSortedCoins([...favorites, ...others]);
   }, [allCoins, userFavorites]);
-  const handleLogout = () => { /* ...código igual... */
+  const handleLogout = () => { 
     setToken(null);
     setHistory([]);
     setAllCoins([]);
     setUserFavorites([]);
     setSortedCoins([]);
   };
-  const handleTabChange = (event, newValue) => { /* ...código igual... */
+  const handleTabChange = (event, newValue) => { 
     setCurrentTab(newValue);
   };
-  
-  // --- MUDANÇA: Criar os Refs ---
+
   const authPageRef = useRef(null);
   const mainAppRef = useRef(null);
-  // Determina qual ref usar com base no estado ATUAL do token
   const nodeRef = token ? mainAppRef : authPageRef;
-  // --- FIM DA MUDANÇA ---
 
-  // --- Renderização ---
   return (
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       
       <SwitchTransition mode="out-in">
         <CSSTransition
-          key={token ? "app" : "auth"} // O gatilho (sem mudanças)
-          
-          // --- MUDANÇA: Passa o nodeRef correto ---
+          key={token ? "app" : "auth"} 
+
           nodeRef={nodeRef} 
-          // --- FIM DA MUDANÇA ---
           
           timeout={600}
           classNames="page-slide"
         >
-          {/* MUDANÇA: 
-            Agora o 'ref' é dinâmico (assim como o 'nodeRef').
-            E o conteúdo condicional (token ? ... : ...)
-            foi movido para DENTRO do 'div' wrapper.
-          */}
           <div ref={nodeRef} className="page-wrapper">
             {token ? (
-              // Se há token, mostra a App Principal
               <>
                 <AppBar position="static" color="transparent" elevation={0} sx={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
                   <Toolbar>
-                  <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold', color: 'white' }}> {/* <-- ADICIONADO A COR */}
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold', color: 'white' }}> 
                      Nexus Cripto
                     </Typography>
-                     <Button color="inherit" onClick={handleLogout} variant="outlined" sx={{ color: 'white', borderColor: 'rgba(255, 255, 255, 0.5)' }}> {/* <-- ADICIONADO A COR */}
+                     <Button color="inherit" onClick={handleLogout} variant="outlined" sx={{ color: 'white', borderColor: 'rgba(255, 255, 255, 0.5)' }}> 
                       Sair
                       </Button>
                     </Toolbar>
@@ -217,7 +191,6 @@ function App() {
                 </Container>
               </>
             ) : (
-              // Se não há token, mostra a página de Login
               <AuthPage setToken={setToken} />
             )}
           </div>

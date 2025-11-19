@@ -1,13 +1,9 @@
-// src/components/Login.js
+
 import backendURL from '../apiConfig.js';
 import React, { useState } from 'react';
 import axios from 'axios';
-
-// --- NOVOS IMPORTS DO MUI ---
 import { TextField, Button, Box, Typography } from '@mui/material';
-// --- FIM DOS NOVOS IMPORTS ---
 
-// O 'setToken' ainda é recebido do App.js
 function Login({ setToken }) {
   const [formData, setFormData] = useState({
     email: '',
@@ -34,7 +30,7 @@ function Login({ setToken }) {
       );
       
       localStorage.setItem('token', response.data.token);
-      setToken(response.data.token); // Avisa o App.js
+      setToken(response.data.token); 
 
     } catch (error) {
       if (error.response) {
@@ -49,14 +45,11 @@ function Login({ setToken }) {
       }
     }
   };
-
-  // --- NOVO JSX COM MUI ---
   return (
-    // Box é um <div> mais inteligente
     <Box 
-      component="form" // Dizemos que este Box é um <form>
+      component="form" 
       onSubmit={handleSubmit}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} // 'gap: 2' adiciona espaço entre os itens
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} 
     >
       <Typography component="h1" variant="h4" sx={{ fontWeight: 'bold' }}>
         Nexus Cripto
@@ -64,17 +57,15 @@ function Login({ setToken }) {
       <Typography component="h2" variant="h5">
         Login
       </Typography>
-      
-      {/* TextField substitui <label> e <input> */}
       <TextField
-        label="Email" // O label flutuante
-        variant="outlined" // O estilo da borda
+        label="Email"
+        variant="outlined"
         type="email"
         name="email"
         value={formData.email}
         onChange={handleChange}
         required
-        fullWidth // Ocupa 100% da largura
+        fullWidth 
       />
       
       <TextField
@@ -87,12 +78,10 @@ function Login({ setToken }) {
         required
         fullWidth
       />
-      
-      {/* O novo botão com animações */}
       <Button 
         type="submit" 
-        variant="contained" // Estilo "preenchido"
-        color="primary" // Cor primária do tema
+        variant="contained"
+        color="primary" 
         size="large"
         fullWidth
       >
