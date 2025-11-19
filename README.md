@@ -6,7 +6,7 @@
 
 Uma aplicação web moderna e responsiva para conversão de criptomoedas, construída com **React** e **Material UI**. Possui um sistema de autenticação fluido, histórico de transações e gestão de favoritos.
 
-> **🔗 Demo Online:** [Acesse o Projeto Aqui](SEU_LINK_DA_VERCEL_AQUI)
+> **🔗 Demo Online:** [Acesse o Projeto Aqui](https://nexus-frontend-navy.vercel.app)
 
 ## ✨ Funcionalidades
 
@@ -29,7 +29,7 @@ Uma aplicação web moderna e responsiva para conversão de criptomoedas, constr
 
 1.  Clone o repositório:
     ```bash
-    git clone [https://github.com/SEU_USUARIO/nexus-frontend.git](https://github.com/SEU_USUARIO/nexus-frontend.git)
+    git clone [https://github.com/gohenj/nexus-frontend.git](https://github.com/gohenj/nexus-frontend.git)
     ```
 2.  Entre na pasta:
     ```bash
@@ -51,4 +51,4 @@ Uma aplicação web moderna e responsiva para conversão de criptomoedas, constr
     ```
 
 ---
-Desenvolvido por **[Seu Nome]**.
+Desenvolvido por **[Gustavo Mendonça]**.
