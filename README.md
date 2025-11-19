@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# 🪙 Nexus Cripto (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-## Available Scripts
+Uma aplicação web moderna e responsiva para conversão de criptomoedas, construída com **React** e **Material UI**. Possui um sistema de autenticação fluido, histórico de transações e gestão de favoritos.
 
-In the project directory, you can run:
+> **🔗 Demo Online:** [Acesse o Projeto Aqui](SEU_LINK_DA_VERCEL_AQUI)
 
-### `npm start`
+## ✨ Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **🎨 UI High-Tech:** Interface moderna com tema escuro/claro e fundo animado dinâmico.
+* **🔐 Autenticação Animada:** Tela de Login/Cadastro com animações de transição suaves (Mobile-first).
+* **💱 Conversor em Tempo Real:** Integração com API para taxas de câmbio atualizadas.
+* **⭐ Favoritos:** Sistema para salvar e filtrar suas moedas preferidas no topo da lista.
+* **📜 Histórico:** Registro automático de todas as conversões realizadas.
+* **📱 Totalmente Responsivo:** Layout adaptável para Desktop e Mobile.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tecnologias Utilizadas
 
-### `npm test`
+* **React.js** (Hooks, Context, Router)
+* **Material UI (MUI)** (Componentes visuais)
+* **Axios** (Requisições HTTP)
+* **React Transition Group** (Animações de rota)
+* **CSS3** (Animações customizadas e Gradients)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Como Rodar Localmente
 
-### `npm run build`
+1.  Clone o repositório:
+    ```bash
+    git clone [https://github.com/SEU_USUARIO/nexus-frontend.git](https://github.com/SEU_USUARIO/nexus-frontend.git)
+    ```
+2.  Entre na pasta:
+    ```bash
+    cd nexus-frontend
+    ```
+3.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+4.  Crie um arquivo `apiConfig.js` dentro de `src/` apontando para seu backend local:
+    ```javascript
+    // src/apiConfig.js
+    const backendURL = 'http://localhost:3001';
+    export default backendURL;
+    ```
+5.  Inicie o projeto:
+    ```bash
+    npm start
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+Desenvolvido por **[Seu Nome]**.
